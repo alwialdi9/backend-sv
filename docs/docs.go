@@ -39,11 +39,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "the body to create a Article",
-                        "name": "body",
+                        "name": "Body",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controllers.CreateArticleRequest"
+                            "$ref": "#/definitions/controllers.ArticleRequest"
                         }
                     }
                 ],
@@ -51,7 +51,8 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/controllers.CreateArticleRequest"
+                            "type": "object",
+                            "additionalProperties": true
                         }
                     }
                 }
@@ -83,7 +84,79 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Posts"
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Edit article by Id.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Article"
+                ],
+                "summary": "Edit article By ID.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "article id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "the body to update a Article",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.ArticleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete article by Id.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Article"
+                ],
+                "summary": "Delete article By ID.",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "article id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
                         }
                     }
                 }
@@ -122,10 +195,8 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/models.Posts"
-                            }
+                            "type": "object",
+                            "additionalProperties": true
                         }
                     }
                 }
@@ -133,49 +204,34 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "controllers.CreateArticleRequest": {
+        "controllers.ArticleRequest": {
             "type": "object",
+            "required": [
+                "category",
+                "content",
+                "status",
+                "title"
+            ],
             "properties": {
                 "category": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 3
                 },
                 "content": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 200
                 },
                 "status": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "publish",
+                        "draft",
+                        "thrash"
+                    ]
                 },
                 "title": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.Posts": {
-            "type": "object",
-            "properties": {
-                "category": {
-                    "type": "string"
-                },
-                "content": {
-                    "type": "string"
-                },
-                "createdDate": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "timestamp": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "updatedDate": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 20
                 }
             }
         }
@@ -186,7 +242,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "localhost:3000/api",
-	BasePath:         "/",
+	BasePath:         "localhost:3000/api",
 	Schemes:          []string{},
 	Title:            "backend SV",
 	Description:      "This is a doc API for backend SV",

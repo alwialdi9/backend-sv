@@ -26,6 +26,8 @@ func Route() *fiber.App {
 	api.Post("/article", controllers.CreateArticle)
 	api.Get("/article/:limit/:offset", controllers.GetArticle)
 	api.Get("/article/:id", controllers.GetArticleById)
+	api.Post("/article/:id", controllers.EditArticle)
+	api.Delete("/article/:id", controllers.DeleteArticle)
 
 	return app
 }
