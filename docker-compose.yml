@@ -1,21 +1,6 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    container_name: go_app
-    ports:
-      - "3000:3000"
-    environment:
-      # These environment variables can be used in your Go app for DB connection.
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_USER: myuser
-      DB_PASSWORD: mypassword
-      DB_NAME: article
-    depends_on:
-      - postgres
-
   postgres:
     image: postgres:14-alpine
     container_name: postgres_db
@@ -29,6 +14,27 @@ services:
       - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d article"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: go_app
+    ports:
+      - "3000:3000"
+    environment:
+      # These environment variables can be used in your Go app for DB connection.
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: myuser
+      DB_PASSWORD: mypassword
+      DB_NAME: article
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   pgdata:
