@@ -101,14 +101,19 @@ func CreateArticle(c *fiber.Ctx) error {
 // @Param limit path integer true "article limit"
 // @Param offset path integer true "article offset"
 // @Success 200 object map[string]interface{}
-// @Router /article/:limit/:offset [GET]
+// @Router /article/:status/:limit/:offset [GET]
 func GetArticle(c *fiber.Ctx) error {
 	limit, _ := c.ParamsInt("limit", 10)
 	offset, _ := c.ParamsInt("offset", 0)
+	status := c.Params("status")
 
 	var data []models.Posts
 
-	result := config.DB.Select("id", "title", "content", "category", "status").Limit(limit).Offset(offset).Find(&data)
+	count := int64(0)
+
+	config.DB.Model(&models.Posts{}).Where("status = ?", status).Count(&count)
+
+	result := config.DB.Select("id", "title", "content", "category", "status").Where("status = ?", status).Limit(limit).Offset(offset).Find(&data)
 
 	if result.Error != nil {
 		log.WithError(result.Error).Error("Failed to Get article")
@@ -123,6 +128,7 @@ func GetArticle(c *fiber.Ctx) error {
 		"limit":  limit,
 		"offset": offset,
 		"data":   data,
+		"total":  count,
 	}
 	return c.JSON(response)
 }
@@ -250,12 +256,28 @@ func DeleteArticle(c *fiber.Ctx) error {
 		})
 	}
 
-	var data models.Posts
+	data := models.Posts{}
 
-	result := config.DB.Delete(&data, id)
+	resultData := config.DB.Where("id = ?", id).First(&data)
 
-	if result.Error != nil {
-		log.WithError(result.Error).Error(fmt.Sprintf("Failed to Delete article with id %d", id))
+	if resultData.Error != nil {
+		log.WithError(resultData.Error).Error(fmt.Sprintf("Data not found with id %d", id))
+		return c.JSON(map[string]interface{}{
+			"status":  "failed",
+			"message": fmt.Sprintf("Data not found with id %d", id),
+		})
+	}
+
+	var result error
+
+	if data.Status == "thrash" {
+		result = config.DB.Delete(&data, id).Error
+	} else {
+		result = config.DB.Model(&models.Posts{}).Where("id = ?", id).Update("status", "thrash").Error
+	}
+
+	if result != nil {
+		log.WithError(result).Error(fmt.Sprintf("Failed to Delete article with id %d", id))
 		return c.JSON(map[string]interface{}{
 			"status":  "failed",
 			"message": fmt.Sprintf("Failed to Delete article with id %d", id),
