@@ -23,7 +23,7 @@ definitions:
     - status
     - title
     type: object
-host: localhost:3000/api
+host: localhost:3000
 info:
   contact:
     email: alwi.aldisyach@gmail.com
@@ -129,7 +129,7 @@ paths:
       summary: Edit article By ID.
       tags:
       - Article
-  /article/:limit/:offset:
+  /article/:status/:limit/:offset:
     get:
       consumes:
       - application/json

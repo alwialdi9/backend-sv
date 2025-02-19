@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "aee353ee-e5f1-4b5a-8945-2cee3596c501",
+		"name": "backend SV",
+		"description": "This is a doc API for backend SV\n\nContact Support:\n Name: Alwi Aldiansyach\n Email: alwi.aldisyach@gmail.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11693943"
+	},
+	"item": [
+		{
+			"name": "article",
+			"item": [
+				{
+					"name": ":id",
+					"item": [
+						{
+							"name": "Get article By ID.",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/article/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"article",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) article id"
+										}
+									]
+								},
+								"description": "Get article by Id."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/article/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"article",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"ullamco__0\": true,\n  \"sed_4d1\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Edit article By ID.",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"category\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"thrash\",\n  \"title\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/article/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"article",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<string>",
+											"description": "(Required) article id"
+										}
+									]
+								},
+								"description": "Edit article by Id."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"category\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"thrash\",\n  \"title\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/article/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"article",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"ullamco__0\": true,\n  \"sed_4d1\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete article By ID.",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/article/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"article",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) article id"
+										}
+									]
+								},
+								"description": "Delete article by Id."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/article/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"article",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"ullamco__0\": true,\n  \"sed_4d1\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": ":status",
+					"item": [
+						{
+							"name": ":limit",
+							"item": [
+								{
+									"name": ":offset",
+									"item": [
+										{
+											"name": "Get article with limit and offset.",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/article/:status/:limit/:offset",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"article",
+														":status",
+														":limit",
+														":offset"
+													],
+													"variable": [
+														{
+															"key": "status"
+														},
+														{
+															"key": "limit",
+															"value": "<integer>",
+															"description": "(Required) article limit"
+														},
+														{
+															"key": "offset",
+															"value": "<integer>",
+															"description": "(Required) article offset"
+														}
+													]
+												},
+												"description": "Get article by Limit and offset."
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/article/:status/:limit/:offset",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"article",
+																":status",
+																":limit",
+																":offset"
+															],
+															"variable": [
+																{
+																	"key": "status"
+																},
+																{
+																	"key": "limit"
+																},
+																{
+																	"key": "offset"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"ullamco__0\": true,\n  \"sed_4d1\": true\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Add article.",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"category\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"thrash\",\n  \"title\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/article",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"article"
+							]
+						},
+						"description": "Add article and save to database."
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"category\": \"<string>\",\n  \"content\": \"<string>\",\n  \"status\": \"thrash\",\n  \"title\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/article",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"article"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"ullamco__0\": true,\n  \"sed_4d1\": true\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:3000/api"
+		}
+	]
+}

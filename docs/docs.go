@@ -162,7 +162,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/article/:limit/:offset": {
+        "/article/:status/:limit/:offset": {
             "get": {
                 "description": "Get article by Limit and offset.",
                 "consumes": [
@@ -241,7 +241,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:3000/api",
+	Host:             "localhost:3000",
 	BasePath:         "localhost:3000/api",
 	Schemes:          []string{},
 	Title:            "backend SV",
